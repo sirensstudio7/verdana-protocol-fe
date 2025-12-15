@@ -5,78 +5,59 @@ const featureCards = [
   {
     tag: "MRV",
     title: "Automated MRV Protocols",
-    description: "Real-time measurement, reporting, and verification of environmental impact data.",
+    description: ["Measurment, Reporting, Verfication"],
     icon: Leaf,
   },
   {
     tag: "IAT",
     title: "Industrial Assessment Tokenization",
-    description: "Transform industrial sustainability assessments into verifiable digital assets.",
+    description: ["Measurment, Reporting, Verfication"],
     icon: BarChart3,
   },
   {
     tag: "CFT",
     title: "Carbon Footprint Tracking",
-    description: "End-to-end carbon monitoring across your entire manufacturing supply chain.",
+    description: ["Measurment, Reporting, Verfication"],
     icon: Globe,
   },
   {
     tag: "SEM",
     title: "Sustainable Energy Management",
-    description: "Optimize energy consumption with AI-powered sustainability insights.",
+    description: ["Measurment, Reporting, Verfication"],
     icon: Zap,
   },
 ];
 
 const HeroSection = () => {
   return (
-    <section className="bg-verdana-dark py-16 lg:py-24">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+    <section className="relative h-[100vh] py-16 lg:py-24 bg-cover bg-center bg-no-repeat flex items-end z-0 -mt-[100px]" style={{ backgroundImage: 'url(/webp/bg-hero.webp)', paddingBottom: '48px' }}>
+      <div className="absolute bottom-0 left-0 right-0 w-full h-[200px] pointer-events-none" style={{ background: 'linear-gradient(to top, hsl(150, 40%, 22%), transparent)' }}></div>
+      <div className="container mx-auto px-4 lg:px-8 w-full relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-end">
           {/* Left Content */}
-          <div className="space-y-6 lg:space-y-8">
-            <div className="inline-flex items-center gap-2 bg-verdana-medium/30 px-4 py-2 rounded-full">
-              <span className="w-2 h-2 bg-verdana-yellow rounded-full" />
-              <span className="text-verdana-cream/80 text-sm">
-                Blockchain-Powered Sustainability
-              </span>
+          <div className="space-y-8">
+            <div className="flex flex-col gap-4 w-full" style={{ color: 'rgba(23, 54, 38, 0)' }}>
+              <h1 className="text-[40px] font-serif font-semibold text-[#DFF390] leading-tight">
+                The Green Layer for<br />
+                Sustainable Manufacturing
+              </h1>
+
+              <p className="text-verdana-cream/70 text-base max-w-xl" style={{ fontSize: '16px', color: 'white' }}>
+                On-Chain Verification and Asset Trading at Manufacturing Scale.
+              </p>
             </div>
 
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-semibold text-verdana-cream leading-tight">
-              The Green Layer for Sustainable Manufacturing
-            </h1>
-
-            <p className="text-verdana-cream/70 text-lg lg:text-xl max-w-xl">
-              Transform your manufacturing operations with blockchain-verified environmental compliance and real-time sustainability tracking.
-            </p>
-
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-verdana-cream text-verdana-dark hover:bg-verdana-yellow text-base px-6 py-6">
+              <Button className="bg-verdana-cream text-verdana-dark hover:bg-verdana-yellow text-base px-6 py-6 rounded-[48px]">
                 Start Building
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button
                 variant="outline"
-                className="border-verdana-cream/30 text-verdana-cream hover:bg-verdana-medium/30 hover:text-verdana-cream text-base px-6 py-6"
+                className="border-verdana-cream/30 text-white bg-transparent hover:bg-transparent hover:text-white text-base px-6 py-6 h-[24px] rounded-[48px]"
               >
-                View Documentation
+                Open Dashboard
               </Button>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-verdana-medium/30">
-              <div>
-                <div className="text-2xl lg:text-3xl font-semibold text-verdana-cream">$2.4B+</div>
-                <div className="text-verdana-cream/60 text-sm">Carbon Credits Verified</div>
-              </div>
-              <div>
-                <div className="text-2xl lg:text-3xl font-semibold text-verdana-cream">340+</div>
-                <div className="text-verdana-cream/60 text-sm">Global Partners</div>
-              </div>
-              <div>
-                <div className="text-2xl lg:text-3xl font-semibold text-verdana-cream">99.9%</div>
-                <div className="text-verdana-cream/60 text-sm">Uptime SLA</div>
-              </div>
             </div>
           </div>
 
@@ -85,20 +66,25 @@ const HeroSection = () => {
             {featureCards.map((card, index) => (
               <div
                 key={index}
-                className="bg-verdana-medium/20 border border-verdana-medium/30 rounded-xl p-5 hover:bg-verdana-medium/30 transition-colors group"
+                className="bg-verdana-medium/20 border border-verdana-medium/30 rounded-xl hover:bg-verdana-medium/30 transition-colors group"
+                style={{ 
+                  padding: '16px',
+                  background: 'unset',
+                  backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                  borderColor: 'rgba(255, 255, 255, 0.3)',
+                  color: 'rgba(23, 54, 38, 1)',
+                  backdropFilter: 'blur(5px)',
+                  WebkitBackdropFilter: 'blur(5px)'
+                }}
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 bg-verdana-cream/10 rounded-lg flex items-center justify-center group-hover:bg-verdana-cream/20 transition-colors">
-                    <card.icon className="w-5 h-5 text-verdana-cream" />
-                  </div>
-                  <span className="text-xs font-medium text-verdana-yellow bg-verdana-yellow/10 px-2 py-1 rounded">
-                    {card.tag}
-                  </span>
+                <h3 className="text-verdana-cream font-medium mb-2" style={{ color: 'rgba(223, 243, 144, 1)', fontSize: '24px', fontWeight: '800' }}>{card.title}</h3>
+                <div className="space-y-1">
+                  {card.description.map((paragraph, idx) => (
+                    <p key={idx} className="text-verdana-cream/60 text-sm leading-relaxed" style={{ color: 'rgba(255, 255, 255, 1)', lineHeight: '32px' }}>
+                      {paragraph}
+                    </p>
+                  ))}
                 </div>
-                <h3 className="text-verdana-cream font-medium mb-2">{card.title}</h3>
-                <p className="text-verdana-cream/60 text-sm leading-relaxed">
-                  {card.description}
-                </p>
               </div>
             ))}
           </div>

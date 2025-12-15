@@ -74,7 +74,8 @@ export default {
       },
       fontFamily: {
         serif: ["Cormorant Garamond", "serif"],
-        sans: ["Inter", "sans-serif"],
+        sans: ["Inknut Antiqua", "serif"],
+        default: ["Inknut Antiqua", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

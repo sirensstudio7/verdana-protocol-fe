@@ -1,54 +1,21 @@
 const QuoteSection = () => {
   return (
-    <section className="relative bg-verdana-forest py-20 lg:py-32 overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <svg
-          viewBox="0 0 1440 400"
-          className="absolute inset-0 w-full h-full"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          {/* Abstract forest background pattern */}
-          <g fill="hsl(150 45% 30%)">
-            <circle cx="100" cy="100" r="80" />
-            <circle cx="300" cy="150" r="100" />
-            <circle cx="500" cy="80" r="60" />
-            <circle cx="700" cy="200" r="120" />
-            <circle cx="900" cy="100" r="90" />
-            <circle cx="1100" cy="180" r="110" />
-            <circle cx="1300" cy="120" r="70" />
-            <circle cx="200" cy="300" r="100" />
-            <circle cx="400" cy="350" r="80" />
-            <circle cx="600" cy="320" r="90" />
-            <circle cx="800" cy="380" r="70" />
-            <circle cx="1000" cy="340" r="100" />
-            <circle cx="1200" cy="300" r="85" />
-            <circle cx="1400" cy="360" r="95" />
-          </g>
-        </svg>
-      </div>
-
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+    <section className="relative bg-verdana-forest py-20 lg:py-32 overflow-hidden" style={{ backgroundImage: 'url(/webp/impactfull.webp)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', height: '800px' }}>
+      {/* Top Gradient */}
+      <div className="absolute top-0 left-0 right-0 w-full h-[200px] pointer-events-none z-0" style={{ background: 'linear-gradient(to bottom, hsl(150, 45%, 18%), transparent)' }}></div>
+      {/* Bottom Gradient */}
+      <div className="absolute bottom-0 left-0 right-0 w-full h-[300px] pointer-events-none z-0" style={{ background: 'linear-gradient(to top, hsl(150, 40%, 15%) 0%, hsl(150, 40%, 15%) 25%, rgba(23, 54, 38, 0.8) 50%, rgba(23, 54, 38, 0.4) 75%, rgba(23, 54, 38, 0) 100%)' }}></div>
+      <div className="container mx-auto px-4 lg:px-8 relative z-10 h-full flex items-center justify-center">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Decorative Quote Marks */}
-          <div className="flex justify-center mb-6">
-            <span className="text-verdana-yellow text-8xl lg:text-9xl font-serif leading-none opacity-50">
-              "
-            </span>
-          </div>
+          {/* Title */}
+          <h2 className="text-verdana-cream text-center" style={{ fontSize: '20px', color: '#DFF390', marginBottom: '16px' }}>
+            Impactfull Things
+          </h2>
 
           <blockquote className="text-2xl lg:text-3xl xl:text-4xl font-serif italic text-verdana-cream leading-relaxed mb-8">
             We believe that sustainable manufacturing shouldn't be a competitive disadvantage. 
             It should be the foundation of modern industrial excellence.
           </blockquote>
-
-          <div className="flex items-center justify-center gap-4">
-            <div className="w-12 h-12 bg-verdana-cream/20 rounded-full" />
-            <div className="text-left">
-              <div className="text-verdana-cream font-medium">Sarah Chen</div>
-              <div className="text-verdana-cream/60 text-sm">CEO, Verdana Protocol</div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
