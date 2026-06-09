@@ -1,73 +1,126 @@
-import { Clock, MapPin, ShieldAlert, Wallet } from "lucide-react";
+import RevealWords from "./RevealWords";
+import ScrollReveal from "./ScrollReveal";
 
-const painPoints = [
+type CardTone = "default" | "forest" | "accent";
+
+const cardStyles: Record<
+  CardTone,
+  { bg: string; category: string; title: string; description: string }
+> = {
+  default: {
+    bg: "bg-neutral-900",
+    category: "text-neutral-400",
+    title: "text-xl text-white",
+    description: "text-neutral-300",
+  },
+  forest: {
+    bg: "bg-[var(--nav-accent-contrast)]",
+    category: "text-[var(--nav-accent)] opacity-80",
+    title: "text-xl text-white",
+    description: "text-white/70",
+  },
+  accent: {
+    bg: "bg-[var(--nav-accent)]",
+    category: "text-[var(--nav-accent-contrast)] opacity-60",
+    title: "text-2xl lg:text-3xl text-[var(--nav-accent-contrast)]",
+    description: "text-[var(--nav-accent-contrast)] opacity-75",
+  },
+};
+
+const painPoints: {
+  category: string;
+  title: string;
+  description: string;
+  bento?: string;
+  tone?: CardTone;
+}[] = [
   {
-    icon: Clock,
-    title: "Manual and Inefficient",
-    description: "Traditional sustainability reporting is time-consuming, error-prone, and lacks real-time visibility.",
+    category: "Fuel Log",
+    title: "Multi-Aset",
+    description:
+      "Input konsumsi BBM untuk kendaraan, alat berat, dan genset. Support web form, mobile, dan WhatsApp Bot.",
+    bento: "sm:col-span-2",
+    tone: "forest",
   },
   {
-    icon: MapPin,
-    title: "Geographic Friction",
-    description: "Cross-border environmental compliance creates significant operational barriers and delays.",
+    category: "Kalkulasi",
+    title: "CO₂eq Otomatis",
+    description:
+      "Hitung emisi berdasarkan fuel-based atau distance-based. Mendukung blending B40, CH₄, N₂O sesuai GWP AR6 IPCC.",
+    tone: "accent",
+    bento: "sm:col-span-2 lg:col-span-2 lg:row-span-2",
   },
   {
-    icon: ShieldAlert,
-    title: "Data Trust Gap",
-    description: "Stakeholders struggle to verify environmental claims without standardized audit trails.",
+    category: "Compliance",
+    title: "Laporan ESG & PDF",
+    description:
+      "Generate laporan kepatuhan otomatis. Compatible dengan sistem SIGN-SMART KLHK dan pelaporan OJK untuk perusahaan Tbk.",
+    bento: "lg:row-span-2",
   },
   {
-    icon: Wallet,
-    title: "Financing Barrier",
-    description: "Sustainable projects face difficulties accessing green financing due to verification challenges.",
+    category: "Analytics",
+    title: "Dashboard Real-time",
+    description:
+      "Visualisasi konsumsi per kendaraan, per sopir, per lokasi, dan tren emisi 30 hari. Breakdown lengkap untuk manajemen.",
+  },
+  {
+    category: "Keamanan",
+    title: "Anomaly Detection",
+    description:
+      "Flag otomatis pengisian melebihi kapasitas tangki, konsumsi > 2x rata-rata historis, dan pengisian di luar jam operasional.",
+  },
+  {
+    category: "Multi-tenant",
+    title: "Role-Based Access",
+    description:
+      "5 level role: Super Admin, Admin, Manager, Operator, Viewer. Row-level security di PostgreSQL per organisasi.",
+    bento: "sm:col-span-2",
   },
 ];
 
 const GreenGrowthSection = () => {
   return (
-    <section className="relative bg-gradient-to-b from-verdana-green to-verdana-forest overflow-hidden">
-      {/* Content */}
-      <div className="container mx-auto px-4 lg:px-8 py-16 lg:py-24" style={{ backgroundImage: 'url(/arrow.png)', backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-        <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-serif font-semibold text-verdana-cream mb-4">
-            Legacy System Are<br />
-            Stifling Green Growth
-          </h2>
-          <p className="text-verdana-cream/70 text-lg max-w-2xl mx-auto">
-            The path to sustainable manufacturing is blocked by systemic inefficiencies
-          </p>
+    <section id="fitur" className="bg-black py-20 lg:py-28">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-end mb-16 lg:mb-24">
+          <RevealWords
+            as="h2"
+            text="Satu platform untuk semua kebutuhan monitoring energi"
+            className="text-2xl lg:text-4xl xl:text-[42px] font-semibold text-white leading-[1.35] lg:leading-[1.3] xl:leading-[1.25] tracking-[-0.02em] text-balance"
+          />
+          <ScrollReveal
+            as="p"
+            className="text-base text-neutral-400 leading-relaxed lg:max-w-md lg:ml-auto lg:self-end"
+            delay={0.15}
+          >
+            Dari input manual hingga IoT sensor, dari startup logistik hingga korporat yang wajib
+            lapor ESG ke OJK.
+          </ScrollReveal>
         </div>
 
-        {/* Pain Point Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" style={{ height: '430px' }}>
-          {painPoints.map((point, index) => (
-            <div
-              key={index}
-              className="rounded-2xl p-6 flex flex-col card-hover"
-              style={{ 
-                backgroundColor: '#DFF390',
-                backgroundImage: 'url(/1-card.png)',
-                backgroundSize: '64%',
-                backgroundPosition: 'right center',
-                backgroundRepeat: 'no-repeat',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                gap: '56px',
-                transition: 'transform 0.3s ease'
-              }}
-            >
-              <h3 className="text-verdana-dark font-semibold text-lg mb-2" style={{ fontSize: '32px', color: '#305E51', lineHeight: '120%' }}>
-                {point.title.split(' ').slice(0, Math.ceil(point.title.split(' ').length / 2)).join(' ')}<br />
-                {point.title.split(' ').slice(Math.ceil(point.title.split(' ').length / 2)).join(' ')}
-              </h3>
-              <p className="text-verdana-dark/70 text-sm leading-relaxed" style={{ fontSize: '16px', color: '#305E51' }}>
-                {point.description}
-              </p>
-            </div>
-          ))}
-        </div>
+        <ScrollReveal
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 auto-rows-[minmax(200px,auto)] lg:auto-rows-[minmax(220px,1fr)]"
+          stagger={0.08}
+          y={32}
+        >
+          {painPoints.map((point) => {
+            const style = cardStyles[point.tone ?? "default"];
+            return (
+              <div
+                key={point.category}
+                className={`group flex flex-col h-full min-h-[200px] rounded-2xl p-6 lg:p-7 transition-all duration-300 ${point.bento ?? ""} ${style.bg}`}
+              >
+                <p className={`text-xs font-medium uppercase tracking-wider mb-3 ${style.category}`}>
+                  {point.category}
+                </p>
+                <h3 className={`font-semibold leading-tight mb-3 ${style.title}`}>{point.title}</h3>
+                <p className={`text-sm leading-relaxed mt-auto ${style.description}`}>
+                  {point.description}
+                </p>
+              </div>
+            );
+          })}
+        </ScrollReveal>
       </div>
     </section>
   );

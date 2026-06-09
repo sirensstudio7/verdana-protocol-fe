@@ -47,6 +47,17 @@
     --verdana-yellow: 45 80% 70%;
     --verdana-forest: 150 45% 18%;
 
+    /* Floating nav */
+    --border-rgb: 255, 255, 255;
+    --nav-bg-rgb: 255, 255, 255;
+    --foreground-rgb: 255, 255, 255;
+    --surface-rgb: 255, 255, 255;
+    --nav-text-muted: rgba(255, 255, 255, 0.72);
+    --nav-foreground: #ffffff;
+    --nav-accent: #dff390;
+    --nav-accent-strong: #c8e86a;
+    --nav-accent-contrast: #305e51;
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -115,6 +126,10 @@
   
   .font-sans {
     font-family: 'Inknut Antiqua', serif;
+  }
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
   }
 
   .card-hover:hover {

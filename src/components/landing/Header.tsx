@@ -1,97 +1,116 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
+const navLinks = [
+  { label: "Fitur", href: "#fitur" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Regulasi", href: "#regulasi" },
+];
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const navLinks = ["Compliance", "Platform", "Integration"];
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 64);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="bg-verdana-dark sticky top-0 z-50" style={{ boxSizing: 'content-box', boxShadow: 'none', background: 'linear-gradient(to bottom, rgba(5, 75, 98, 0.8), rgba(5, 75, 98, 0))' }}>
-      <div className="container mx-auto px-4 lg:px-8 flex items-center justify-center flex-wrap w-full h-[100px] bg-transparent" style={{ color: 'rgba(23, 54, 38, 0)' }}>
-        <div className="flex items-center justify-between w-full text-center h-[100px]" style={{ width: '100%', color: 'rgba(23, 54, 38, 0)' }}>
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <img 
-              src="/verdana-logo.png" 
-              alt="Verdana Protocol Logo" 
-              className="w-14 h-14"
+    <header className="fixed top-0 left-0 right-0 z-50 pt-4">
+      <div className="flex justify-center px-4">
+        <nav
+          className={`relative flex w-full items-center justify-between px-5 backdrop-blur-xl transition-all duration-500 ease-out rounded-full py-3 ${
+            isScrolled ? "max-w-[900px]" : "max-w-[1280px]"
+          }`}
+          style={{
+            backgroundColor: "rgba(var(--nav-bg-rgb), 0.18)",
+          }}
+        >
+          <a href="/" className="shrink-0">
+            <img
+              src="/verdana-logo.png"
+              alt="Verdana Protocol"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-lg object-contain"
             />
-            <span className="text-verdana-cream font-semibold text-lg">
-              Verdana Protocol
-            </span>
-          </div>
+          </a>
 
-          {/* Desktop Navigation and CTA Buttons Wrapper */}
-          <div className="hidden lg:flex items-center gap-4">
-            {/* Desktop Navigation */}
-            <nav className="flex items-center gap-4 h-16 p-2 bg-[rgba(255,255,255,0.24)] rounded-[72px]" style={{ border: '2px solid rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}>
-              {navLinks.map((link) => (
-                <a
-                  key={link}
-                  href="#"
-                  className="hover:opacity-80 transition-colors text-sm h-12 flex items-center px-4"
-                  style={{ color: 'white' }}
-                >
-                  {link}
-                </a>
-              ))}
-            </nav>
-
-            {/* Desktop CTA Buttons */}
-            <div className="flex items-center gap-3">
-              <Button
-                variant="ghost"
-                className="hover:bg-verdana-medium/30"
-                style={{ borderRadius: '48px', border: '1px solid rgba(255, 255, 255, 0.1)', paddingLeft: '24px', paddingRight: '24px', backgroundColor: 'white', color: '#305E51' }}
+          <div className="absolute left-1/2 hidden -translate-x-[55%] items-center gap-20 md:flex">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="whitespace-nowrap rounded-full px-3 py-1.5 text-sm text-[var(--nav-text-muted)] transition-colors duration-200 hover:bg-[rgba(var(--foreground-rgb),0.05)] hover:text-[var(--nav-foreground)]"
               >
-                Sign In
-              </Button>
-              <Button className="text-white hover:opacity-90" style={{ backgroundColor: '#305E51', paddingLeft: '24px', paddingRight: '24px', borderRadius: '48px' }}>
-                Get Started
-              </Button>
-            </div>
+                {link.label}
+              </a>
+            ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden text-verdana-cream"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+          <div className="flex shrink-0 items-center gap-2">
+            <a
+              href="#pricing"
+              className="hidden items-center whitespace-nowrap rounded-full bg-[var(--nav-accent)] h-10 px-5 text-sm font-bold text-[var(--nav-accent-contrast)] transition-colors duration-200 hover:bg-[var(--nav-accent-strong)] md:inline-flex"
+            >
+              Get Started
+            </a>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-verdana-medium/30">
-            <nav className="flex flex-col gap-4">
+            <button
+              type="button"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-200 md:hidden"
+              style={{
+                borderColor: "rgba(var(--border-rgb), 0.6)",
+                backgroundColor: "rgba(var(--surface-rgb), 0.42)",
+                color: "var(--nav-foreground)",
+              }}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" strokeWidth={1.8} />}
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      {isMobileMenuOpen && (
+        <div className="flex justify-center px-4 mt-2 md:hidden">
+          <div
+            className="w-full max-w-[1280px] rounded-full px-4 py-3 backdrop-blur-xl"
+            style={{
+              backgroundColor: "rgba(var(--nav-bg-rgb), 0.18)",
+            }}
+          >
+            <nav className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <a
-                  key={link}
-                  href="#"
-                  className="text-verdana-cream/80 hover:text-verdana-cream transition-colors"
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="rounded-full px-3 py-2 text-sm transition-colors duration-200 hover:bg-[rgba(var(--foreground-rgb),0.05)]"
+                  style={{ color: "var(--nav-text-muted)" }}
                 >
-                  {link}
+                  {link.label}
                 </a>
               ))}
-              <div className="flex flex-col gap-2 pt-4">
-                <Button
-                  variant="ghost"
-                  className="hover:bg-verdana-medium/30 justify-start"
-                  style={{ borderRadius: '48px', border: '1px solid rgba(255, 255, 255, 0.1)', paddingLeft: '24px', paddingRight: '24px', backgroundColor: 'white', color: '#305E51' }}
-                >
-                  Sign In
-                </Button>
-                <Button className="bg-verdana-cream text-verdana-dark hover:bg-verdana-yellow">
-                  Get Started
-                </Button>
-              </div>
+              <a
+                href="#pricing"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mt-2 inline-flex items-center justify-center rounded-full h-10 px-5 text-sm font-bold"
+                style={{
+                  backgroundColor: "var(--nav-accent)",
+                  color: "var(--nav-accent-contrast)",
+                }}
+              >
+                Get Started
+              </a>
             </nav>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </header>
   );
 };
