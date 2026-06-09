@@ -8,7 +8,7 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-[100dvh] flex flex-col overflow-hidden">
       <img
-        src="/hero-bg-hd.jpg"
+        src="/hero-bg-hd.webp"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover object-center"

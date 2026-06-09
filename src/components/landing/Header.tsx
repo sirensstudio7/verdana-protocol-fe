@@ -36,7 +36,7 @@ const Header = () => {
             />
           </a>
 
-          <div className="absolute left-1/2 hidden -translate-x-[55%] items-center gap-20 md:flex">
+          <div className="absolute left-1/2 hidden -translate-x-[55%] items-center gap-14 md:flex">
             {navLinks.map((link) => (
               <a
                 key={link.label}

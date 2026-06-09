@@ -9,35 +9,35 @@ const segments = [
     tag: "Armada truk & distribusi",
     description:
       "Pantau konsumsi BBM armada distribusi secara real-time — dari input lapangan hingga laporan siap audit.",
-    image: "/segments-fleet-logistik.png",
+    image: "/segments-fleet-logistik.webp",
   },
   {
     label: "Konstruksi",
     tag: "Alat berat & genset proyek",
     description:
       "Catat pemakaian BBM alat berat dan genset di setiap proyek dengan akurasi data lapangan.",
-    image: "/segments-konstruksi.png",
+    image: "/segments-konstruksi.webp",
   },
   {
     label: "Perkebunan",
     tag: "Estate & operasional kebun",
     description:
       "Kelola konsumsi energi operasional kebun skala besar dengan visibilitas per lokasi dan unit.",
-    image: "/segments-perkebunan.png",
+    image: "/segments-perkebunan.webp",
   },
   {
     label: "Pertambangan",
     tag: "Hauling & fleet site",
     description:
       "Monitor armada hauling dan operasional site dengan deteksi anomali konsumsi otomatis.",
-    image: "/segments-pertambangan.png",
+    image: "/segments-pertambangan.webp",
   },
   {
     label: "Korporat ESG",
     tag: "Pelaporan OJK & audit",
     description:
       "Generate laporan ESG dan kepatuhan regulasi OJK dengan data terstruktur siap audit.",
-    image: "/segments-korporat-esg.png",
+    image: "/segments-korporat-esg.webp",
   },
 ];
 

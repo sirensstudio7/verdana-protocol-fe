@@ -4,7 +4,7 @@ import RevealWords from "./RevealWords";
 import ScrollReveal from "./ScrollReveal";
 
 const pricingBg =
-  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&q=80";
+  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1600&q=70&fm=webp";
 
 const plans: {
   name: string;
