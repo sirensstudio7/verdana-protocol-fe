@@ -22,12 +22,9 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 pt-4">
       <div className="flex justify-center px-4">
         <nav
-          className={`relative flex w-full items-center justify-between px-5 backdrop-blur-xl transition-all duration-500 ease-out rounded-full py-3 ${
+          className={`relative flex w-full items-center justify-between px-5 backdrop-blur-xl transition-all duration-500 ease-out rounded-full border border-white/10 bg-black/50 py-3 ${
             isScrolled ? "max-w-[900px]" : "max-w-[1280px]"
           }`}
-          style={{
-            backgroundColor: "rgba(var(--nav-bg-rgb), 0.18)",
-          }}
         >
           <a href="/" className="shrink-0">
             <img
@@ -78,12 +75,7 @@ const Header = () => {
 
       {isMobileMenuOpen && (
         <div className="flex justify-center px-4 mt-2 md:hidden">
-          <div
-            className="w-full max-w-[1280px] rounded-full px-4 py-3 backdrop-blur-xl"
-            style={{
-              backgroundColor: "rgba(var(--nav-bg-rgb), 0.18)",
-            }}
-          >
+          <div className="w-full max-w-[1280px] rounded-full border border-white/10 bg-black/50 px-4 py-3 backdrop-blur-xl">
             <nav className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <a

@@ -24,7 +24,11 @@ const RevealWords = ({
     if (!root) return;
 
     const words = root.querySelectorAll("[data-word]");
-    if (prefersReducedMotion()) return;
+
+    if (prefersReducedMotion()) {
+      gsap.set(words, { yPercent: 0, opacity: 1 });
+      return;
+    }
 
     const ctx = gsap.context(() => {
       gsap.set(words, { yPercent: 110, opacity: 0 });
@@ -36,6 +40,7 @@ const RevealWords = ({
         stagger: 0.055,
         delay,
         ease: "power3.out",
+        paused: onScroll,
       });
 
       if (onScroll) {
@@ -45,10 +50,19 @@ const RevealWords = ({
           once: true,
           animation: tween,
         });
+      } else {
+        tween.play();
       }
     }, root);
 
-    return () => ctx.revert();
+    const fallback = window.setTimeout(() => {
+      gsap.set(words, { yPercent: 0, opacity: 1 });
+    }, 4000);
+
+    return () => {
+      window.clearTimeout(fallback);
+      ctx.revert();
+    };
   }, [text, delay, onScroll]);
 
   const words = text.split(" ").filter(Boolean);

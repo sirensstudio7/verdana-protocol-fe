@@ -29,10 +29,13 @@ const ScrollReveal = ({
   useLayoutEffect(() => {
     const root = ref.current;
     if (!root) return;
-    if (prefersReducedMotion()) return;
-
     const targets =
       stagger > 0 ? gsap.utils.toArray<HTMLElement>(root.children) : [root];
+
+    if (prefersReducedMotion()) {
+      gsap.set(targets, { opacity: 1, y: 0 });
+      return;
+    }
 
     const ctx = gsap.context(() => {
       gsap.set(targets, { opacity: 0, y });
@@ -44,6 +47,7 @@ const ScrollReveal = ({
         delay,
         stagger,
         ease: "power3.out",
+        paused: onScroll,
       });
 
       if (onScroll) {
@@ -53,10 +57,19 @@ const ScrollReveal = ({
           once: true,
           animation: tween,
         });
+      } else {
+        tween.play();
       }
     }, root);
 
-    return () => ctx.revert();
+    const fallback = window.setTimeout(() => {
+      gsap.set(targets, { opacity: 1, y: 0 });
+    }, 4000);
+
+    return () => {
+      window.clearTimeout(fallback);
+      ctx.revert();
+    };
   }, [delay, duration, y, stagger, start, onScroll]);
 
   return (
